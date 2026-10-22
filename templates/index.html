@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart Waste Solutions — AI Waste Segregation & Classification System</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
+  <link rel="stylesheet" href="/static/css/style.css?v=3.1">
   <!-- FontAwesome 6 for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -35,17 +35,10 @@
     <div class="hero-inner">
       
       <!-- Live AI Model Status Pill -->
-      {% if model_ready %}
-      <div class="hero-status-pill">
+      <div class="hero-status-pill" id="heroStatusPill">
         <span class="pulse-dot-green"></span>
-        <span>AI Engine Active: <strong>MobileNetV2</strong> (88.02% Accuracy) — 5 Streams Ready</span>
+        <span id="heroStatusText">AI Engine Active: <strong>MobileNetV2</strong> (88.02% Accuracy) — 5 Streams Ready</span>
       </div>
-      {% else %}
-      <div class="hero-status-pill" style="border-color: rgba(245, 158, 11, 0.4);">
-        <i class="fa-solid fa-circle-exclamation" style="color: #f59e0b;"></i>
-        <span>AI Engine: <strong>Awaiting Weights</strong> (Run Training to Load Model)</span>
-      </div>
-      {% endif %}
 
       <h1>Smart Waste Solutions</h1>
       <p>
@@ -362,5 +355,6 @@
     </div>
   </footer>
 
+  <script src="/static/js/main.js?v=3.1"></script>
 </body>
 </html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classify Waste — Smart Waste Solutions</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=3.1">
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <span>Smart Waste <strong>Solutions</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/classify" class="active"><i class="fa-solid fa-camera"></i> Classify Waste</a></li>
+        <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li><a href="/awareness"><i class="fa-solid fa-earth-americas"></i> Environmental Awareness</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="classifier-page-head">
+    <h1>
+      <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i>
+      AI Waste Classifier
+    </h1>
+    <p>
+      Upload an item photo or use your webcam to automatically classify the waste stream and receive instant disposal guidelines.
+    </p>
+  </div>
+
+  <!-- Main Classifier Two-Column Grid -->
+  <div class="classifier-main-grid">
+
+    <!-- LEFT PANEL: Image Input & Camera -->
+    <section class="panel-container">
+      <h2 class="panel-header-title">
+        <i class="fa-solid fa-image"></i>
+        Provide Waste Image
+      </h2>
+
+      <!-- Input Mode Selection Tabs -->
+      <div class="input-tabs-bar">
+        <button id="tabUpload" class="tab-btn active" type="button">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Upload File
+        </button>
+        <button id="tabCamera" class="tab-btn" type="button">
+          <i class="fa-solid fa-camera"></i> Live Camera
+        </button>
+      </div>
+
+      <!-- 1. Drag & Drop File Upload Area -->
+      <div id="uploadArea">
+        <div id="dropzone" class="dropzone-area">
+          <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+          <div class="dropzone-title">Click to choose image or drag &amp; drop here</div>
+          <div class="dropzone-hint">Supports JPG, PNG, WEBP (Max 16 MB)</div>
+          <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg, image/webp" aria-label="Upload waste item image" style="display: none;">
+        </div>
+      </div>
+
+      <!-- 2. Live Camera Stream Area -->
+      <div id="cameraArea" class="camera-container">
+        <div class="camera-feed-box">
+          <video id="cameraStream" autoplay playsinline muted></video>
+        </div>
+        <div class="camera-btn-group">
+          <button id="btnCapture" class="btn-clean btn-clean-primary" style="flex: 1;" type="button">
+            <i class="fa-solid fa-camera-retro"></i> Capture Snapshot
+          </button>
+          <button id="btnRetake" class="btn-clean btn-clean-secondary" style="display: none; flex: 1;" type="button">
+            <i class="fa-solid fa-arrows-rotate"></i> Retake Photo
+          </button>
+        </div>
+        <canvas id="captureCanvas" style="display: none;"></canvas>
+      </div>
+
+      <!-- Selected Image Preview Box -->
+      <div id="previewBox" class="preview-container">
+        <div class="preview-img-box">
+          <img id="previewImage" alt="Selected waste preview">
+        </div>
+        <div>
+          <button id="btnRemove" class="preview-remove-btn" type="button">
+            <i class="fa-solid fa-trash-can"></i> Remove Selected Image
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="btnPredict" class="btn-predict-action" disabled type="button">
+        <i class="fa-solid fa-bolt"></i> Classify Waste Item
+      </button>
+
+      <!-- Quick Demo Samples for Testing & Presentations -->
+      <div class="samples-strip">
+        <div class="samples-strip-title">
+          <i class="fa-solid fa-flask"></i> Quick Demo Test Samples (1-Click)
+        </div>
+        <div class="samples-buttons-row">
+          <button class="sample-chip chip-btn" data-sample="plastic_sample_1.jpg" type="button">
+            <i class="fa-solid fa-bottle-water" style="color: #2563eb;"></i> Plastic
+          </button>
+          <button class="sample-chip chip-btn" data-sample="paper_sample_1.jpg" type="button">
+            <i class="fa-solid fa-newspaper" style="color: #0284c7;"></i> Paper
+          </button>
+          <button class="sample-chip chip-btn" data-sample="metal_sample_1.jpg" type="button">
+            <i class="fa-solid fa-drum-steelpan" style="color: #d97706;"></i> Metal
+          </button>
+          <button class="sample-chip chip-btn" data-sample="glass_sample_1.jpg" type="button">
+            <i class="fa-solid fa-wine-bottle" style="color: #059669;"></i> Glass
+          </button>
+          <button class="sample-chip chip-btn" data-sample="organic_sample_1.jpg" type="button">
+            <i class="fa-solid fa-apple-whole" style="color: #16a34a;"></i> Organic
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT PANEL: Classification Results & Advice -->
+    <section class="panel-container">
+      <h2 class="panel-header-title">
+        <i class="fa-solid fa-chart-pie"></i>
+        Segregation Results &amp; Guidance
+      </h2>
+
+      <!-- Error Notification Alert Box -->
+      <div id="errorAlert" class="alert-pill alert-danger" style="display: none;">
+        <i class="fa-solid fa-circle-exclamation" style="font-size: 1.25rem;"></i>
+        <div id="errorText"></div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-result-box">
+        <div class="empty-icon">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; color: var(--slate-900); margin-bottom: 0.35rem;">Awaiting Waste Item</h3>
+        <p style="font-size: 0.92rem; max-width: 380px; margin: 0 auto;">
+          Upload an image or capture with your camera to see the AI classification and municipal recycling recommendation.
+        </p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loadingBox" class="loading-state-box">
+        <div class="clean-spinner"></div>
+        <h4 style="font-size: 1.15rem; color: var(--slate-900); margin-bottom: 0.25rem;">Analyzing Waste Item...</h4>
+        <p style="font-size: 0.88rem; color: var(--slate-500);">Extracting spatial features with fine-tuned MobileNetV2</p>
+      </div>
+
+      <!-- Dynamic Prediction Results -->
+      <div id="resultContent" class="result-card-inner">
+        
+        <!-- Feature 6: Low Confidence Warning Alert Banner -->
+        <div id="lowConfidenceWarning" class="alert-pill alert-warning" style="display: none; align-items: flex-start; gap: 0.85rem; margin-bottom: 1.25rem;">
+          <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.35rem; color: #d97706; margin-top: 0.15rem;"></i>
+          <div style="flex: 1;">
+            <strong style="color: #92400e; font-size: 0.95rem; display: block; margin-bottom: 0.2rem;">Low Confidence Prediction</strong>
+            <p id="lowConfidenceText" style="color: #78350f; font-size: 0.88rem; margin: 0 0 0.5rem 0; line-height: 1.45;">
+              The AI is not confident about this prediction. Please try another image with better lighting or a clearer view.
+            </p>
+            <button id="btnTryAnother" type="button" class="btn-clean btn-clean-secondary" style="padding: 0.35rem 0.85rem; font-size: 0.82rem; background: #ffffff;">
+              <i class="fa-solid fa-arrow-rotate-right"></i> Try Another Image
+            </button>
+          </div>
+        </div>
+
+        <div class="result-header-row">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div id="resIconBox" style="width: 44px; height: 44px; border-radius: 10px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+              <i id="resCategoryIcon" class="fa-solid fa-recycle"></i>
+            </div>
+            <div>
+              <span style="font-size: 0.76rem; text-transform: uppercase; color: var(--slate-500); font-weight: 700; letter-spacing: 0.5px;">Predicted Category</span>
+              <div id="resCategory" class="result-class-name">Plastic</div>
+            </div>
+          </div>
+          <div id="resConfidence" class="confidence-chip-pill">98.5% Confidence</div>
+        </div>
+
+        <!-- Confidence Progress Bar -->
+        <div class="confidence-bar-outer">
+          <div id="confidenceBar" class="confidence-bar-inner"></div>
+        </div>
+
+        <!-- Confidence Explanation Note -->
+        <div style="font-size: 0.78rem; color: var(--slate-500); margin: -1rem 0 1.25rem 0; display: flex; align-items: center; gap: 0.4rem;">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Confidence represents the model's score and does not guarantee that the classification is correct.</span>
+        </div>
+
+        <!-- Feature 3: Standardized Waste Disposal Recommendation Card -->
+        <div class="disposal-rec-card" style="background: #ffffff; border: 1px solid var(--border-light); border-left: 5px solid var(--primary); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-subtle);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem;">
+            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary-deep);">
+              <i class="fa-solid fa-hand-holding-heart"></i> Disposal Recommendation
+            </span>
+            <span id="resRecyclableTag" class="tag-recycle tag-yes">Recyclable</span>
+          </div>
+          <p id="resDisposalInstructions" style="font-size: 0.95rem; font-weight: 600; color: var(--slate-900); line-height: 1.5; margin: 0.35rem 0 0.5rem 0;">
+            <!-- Dynamically populated from canonical disposal instructions -->
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.84rem; color: var(--slate-600); margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--slate-200);">
+            <span id="resBinColorBadge" style="width: 12px; height: 12px; border-radius: 50%; display: inline-block; background-color: #2563eb;"></span>
+            <span>Designated Disposal: <strong id="resBinName" style="color: var(--slate-800);">Blue Bin</strong></span>
+          </div>
+        </div>
+
+        <!-- Segregation Steps Accordion/List -->
+        <div class="bin-directive-box" style="padding: 1rem 1.25rem; margin-bottom: 1.25rem;">
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--slate-700);">
+            <i class="fa-solid fa-list-check" style="color: var(--primary); margin-right: 0.35rem;"></i>
+            Recommended Segregation Steps:
+          </div>
+          <ul id="resSegregationSteps" class="steps-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+
+        <!-- Eco Fact Card -->
+        <div class="fact-highlight-box">
+          <i class="fa-solid fa-lightbulb"></i>
+          <div>
+            <strong style="display: block; margin-bottom: 0.2rem;">Environmental Impact Note:</strong>
+            <span id="resEcoFact"></span>
+          </div>
+        </div>
+
+        <!-- All 5 Classes Probability Breakdown -->
+        <div>
+          <div class="breakdown-section-title">
+            Full Model Probability Distribution:
+          </div>
+          <div id="breakdownList" class="breakdown-bars-wrap">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Saved to History Notice -->
+        <div style="font-size: 0.8rem; color: var(--slate-500); margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--slate-100); padding-top: 0.75rem;">
+          <span><i class="fa-solid fa-circle-check" style="color: var(--primary);"></i> Classification saved to database</span>
+          <a href="/history" style="color: var(--primary-deep); font-weight: 600; text-decoration: underline;">View in History &rarr;</a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Corporate Dark Footer -->
+  <footer class="footer-corporate">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Smart Waste Solutions. Developed by Ruthikraj Nayak, Sai Kiran, Lakshmi Narayana, Santosh Kumar.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">MobileNetV2</span>
+          <span class="tech-tag">SQLite Database</span>
+          <span class="tech-tag">Threshold: 60%</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="/static/js/main.js?v=3.1"></script>
+</body>
+</html>

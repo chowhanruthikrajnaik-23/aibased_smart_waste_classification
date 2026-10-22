@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Waste Solutions — AI Waste Segregation & Classification System</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=3.1">
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation (Clean Frosted Sticky) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <span>Smart Waste <strong>Solutions</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/classify"><i class="fa-solid fa-camera"></i> Classify Waste</a></li>
+        <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li><a href="/awareness"><i class="fa-solid fa-earth-americas"></i> Environmental Awareness</a></li>
+        <li><a href="/classify" class="btn-nav-action"><i class="fa-solid fa-wand-magic-sparkles"></i> Classify Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section (Dark Drone Aerial Landfill Background matching Reference Video) -->
+  <section class="hero-swachh">
+    <div class="hero-inner">
+      
+      <!-- Live AI Model Status Pill -->
+      <div class="hero-status-pill" id="heroStatusPill">
+        <span class="pulse-dot-green"></span>
+        <span id="heroStatusText">AI Engine Active: <strong>MobileNetV2</strong> (88.02% Accuracy) — 5 Streams Ready</span>
+      </div>
+
+      <h1>Smart Waste Solutions</h1>
+      <p>
+        Discover our AI-powered waste segregation technology for a cleaner, smarter future in waste management.
+      </p>
+
+      <div class="hero-actions-group">
+        <a href="/classify" class="btn-hero-primary">
+          <i class="fa-solid fa-camera"></i> Classify Waste
+        </a>
+        <a href="#technology" class="btn-hero-secondary">
+          <i class="fa-solid fa-shapes"></i> Explore Technology
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Showcase Ribbon (3 Cards matching SwachhAI in Video Frame 00:15) -->
+  <div class="ribbon-wrapper" id="technology">
+    <div class="solutions-grid">
+      
+      <div class="solution-card">
+        <div class="solution-icon-box">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <h3>Smart Waste Bins & Vision</h3>
+        <p>
+          State-of-the-art MobileNetV2 deep learning model fine-tuned on 1,647 real-world waste images to instantly classify items with high precision.
+        </p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-icon-box">
+          <i class="fa-solid fa-trash-can-arrow-up"></i>
+        </div>
+        <h3>Automated Bin Routing</h3>
+        <p>
+          Instant visual segregation directives routing items into designated color-coded bins (Blue, Yellow, Green, Compost) to prevent contamination.
+        </p>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-icon-box">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3>Eco Analytics & Impact</h3>
+        <p>
+          Real-time confidence scoring, recyclability validation, and actionable environmental facts explaining carbon emissions reduction.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Split Section: "Innovating Waste Management for a Cleaner Future" (Matching Video Frame 00:13) -->
+  <section class="split-section">
+    <div class="split-content">
+      <span class="split-tag">Point-of-Disposal Intelligence</span>
+      <h2>Innovating Waste Management for a Cleaner Future</h2>
+      <p>
+        At Smart Waste Solutions, we design AI-powered waste segregation systems that promote sustainability and circular economy practices. By automating sorting at the moment of disposal, we eliminate hazardous cross-contamination and empower communities to recycle with confidence.
+      </p>
+
+      <!-- Key Engineering Metrics -->
+      <div class="metrics-row">
+        <div class="metric-box">
+          <div class="metric-val">88.02%</div>
+          <div class="metric-sub">Test Accuracy</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">5 Streams</div>
+          <div class="metric-sub">Waste Classes</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">&lt; 50 ms</div>
+          <div class="metric-sub">Inference Latency</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">1,647</div>
+          <div class="metric-sub">Trained Samples</div>
+        </div>
+      </div>
+
+      <a href="/classify" class="btn-clean btn-clean-primary">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Try Live Classification
+      </a>
+    </div>
+
+    <div class="split-media">
+      <div class="split-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&w=800&q=80" alt="Smart Waste Segregation Bins in City">
+      </div>
+      <div class="quote-badge">
+        <p>Transformative and efficient solution.</p>
+        <span>Automated segregation eliminates landfill contamination and scales sustainability.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Waste Streams Section -->
+  <section class="section-full" id="categories">
+    <div class="section-head-center">
+      <h2>The Five Waste Segregation Streams</h2>
+      <p>
+        Standardized municipal color bins designed to protect natural resources and maximize material recovery.
+      </p>
+    </div>
+
+    <div class="categories-5-grid">
+      <!-- 1. Plastic -->
+      <div class="cat-stream-card stream-plastic">
+        <div class="cat-top-bar"></div>
+        <div class="cat-icon-wrap">
+          <i class="fa-solid fa-bottle-water"></i>
+        </div>
+        <h3>Plastic</h3>
+        <span class="cat-bin-badge">Blue Bin</span>
+        <p>PET water bottles, HDPE milk jugs, detergent containers, food packaging, and polymer plastics.</p>
+        <div class="cat-sample-footer">
+          <i class="fa-solid fa-tag"></i> Bottles &bull; Containers &bull; Wrappers
+        </div>
+      </div>
+
+      <!-- 2. Paper -->
+      <div class="cat-stream-card stream-paper">
+        <div class="cat-top-bar"></div>
+        <div class="cat-icon-wrap">
+          <i class="fa-solid fa-newspaper"></i>
+        </div>
+        <h3>Paper</h3>
+        <span class="cat-bin-badge">Paper Bin</span>
+        <p>Corrugated cardboard, newspapers, clean office papers, magazines, and dry carton packaging.</p>
+        <div class="cat-sample-footer">
+          <i class="fa-solid fa-tag"></i> Boxes &bull; Cartons &bull; Documents
+        </div>
+      </div>
+
+      <!-- 3. Metal -->
+      <div class="cat-stream-card stream-metal">
+        <div class="cat-top-bar"></div>
+        <div class="cat-icon-wrap">
+          <i class="fa-solid fa-drum-steelpan"></i>
+        </div>
+        <h3>Metal</h3>
+        <span class="cat-bin-badge">Yellow / Red Bin</span>
+        <p>Aluminum soda cans, tin food containers, foil trays, metal jar lids, and small steel utensils.</p>
+        <div class="cat-sample-footer">
+          <i class="fa-solid fa-tag"></i> Beverage Cans &bull; Tins &bull; Lids
+        </div>
+      </div>
+
+      <!-- 4. Glass -->
+      <div class="cat-stream-card stream-glass">
+        <div class="cat-top-bar"></div>
+        <div class="cat-icon-wrap">
+          <i class="fa-solid fa-wine-bottle"></i>
+        </div>
+        <h3>Glass</h3>
+        <span class="cat-bin-badge">Green Glass Bin</span>
+        <p>Clear and amber beverage bottles, culinary condiment jars, cosmetic glass containers, and vials.</p>
+        <div class="cat-sample-footer">
+          <i class="fa-solid fa-tag"></i> Glass Bottles &bull; Jars &bull; Vials
+        </div>
+      </div>
+
+      <!-- 5. Organic Waste -->
+      <div class="cat-stream-card stream-organic">
+        <div class="cat-top-bar"></div>
+        <div class="cat-icon-wrap">
+          <i class="fa-solid fa-apple-whole"></i>
+        </div>
+        <h3>Organic Waste</h3>
+        <span class="cat-bin-badge">Green Compost Bin</span>
+        <p>Fruit skins, vegetable peels, coffee grounds, food scraps, tea leaves, and garden compost waste.</p>
+        <div class="cat-sample-footer">
+          <i class="fa-solid fa-tag"></i> Food Scraps &bull; Peels &bull; Compost
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- "How It Works?" Section (Matching Video Frame 00:18) -->
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="section-head-center">
+        <h2>How it works?</h2>
+        <p>
+          End-to-end intelligent classification pipeline from camera capture to immediate environmental guidance.
+        </p>
+      </div>
+
+      <div class="workflow-3-grid">
+        <div class="work-step-card">
+          <div class="step-watermark">01</div>
+          <h4>Input Acquisition</h4>
+          <p>
+            Capture a live photo using your phone/webcam or upload an existing image. The input is normalized with aspect-ratio preservation to prevent geometric distortion.
+          </p>
+        </div>
+
+        <div class="work-step-card">
+          <div class="step-watermark">02</div>
+          <h4>MobileNetV2 Deep Learning</h4>
+          <p>
+            A lightweight, inverted-residual convolutional neural network extracts spatial patterns, textures, and material contours to compute softmax class probabilities.
+          </p>
+        </div>
+
+        <div class="work-step-card">
+          <div class="step-watermark">03</div>
+          <h4>Segregation & Eco Guidance</h4>
+          <p>
+            The system returns the predicted category, confidence level, designated municipal bin color, recyclability instructions, and environmental impact facts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Project Development Team Section -->
+  <section class="team-wrap" id="team">
+    <div class="team-box-card">
+      <div style="text-align: center;">
+        <span class="split-tag">Academic Course Submission</span>
+        <h3 style="font-size: 1.85rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.35rem;">
+          Project Development Team
+        </h3>
+        <p style="color: var(--slate-500); font-size: 0.95rem;">
+          Artificial Intelligence Mini Project &bull; Department of Computer Science & Engineering
+        </p>
+      </div>
+
+      <div class="team-grid-4">
+        <div class="student-card">
+          <div class="student-avatar">RN</div>
+          <div>
+            <div class="student-name">Ruthikraj Nayak</div>
+            <div class="student-roll">2024BVS0079</div>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-avatar">SK</div>
+          <div>
+            <div class="student-name">Sai Kiran</div>
+            <div class="student-roll">2024BCS0087</div>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-avatar">LN</div>
+          <div>
+            <div class="student-name">Lakshmi Narayana</div>
+            <div class="student-roll">2024BEC0047</div>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-avatar">SK</div>
+          <div>
+            <div class="student-name">Santosh Kumar</div>
+            <div class="student-roll">2024BCS0175</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Corporate Dark Footer (Matching Reference Video SwachhAI Footer) -->
+  <footer class="footer-corporate">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <i class="fa-solid fa-recycle" style="color: var(--primary);"></i>
+            <span>Smart Waste Solutions</span>
+          </div>
+          <p class="footer-desc">
+            Empowering institutions and municipal facilities with automated computer vision for sustainable waste segregation, recycling acceleration, and environmental protection.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/classify">Classify Waste</a></li>
+            <li><a href="/dashboard">Statistics Dashboard</a></li>
+            <li><a href="/history">Classification History</a></li>
+            <li><a href="/awareness">Environmental Awareness</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Academic Info</h5>
+          <ul class="footer-links">
+            <li><a href="#team">Development Team</a></li>
+            <li><a href="#team">Course Mini Project</a></li>
+            <li><a href="/api/status">API Health &amp; Model Status</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Smart Waste Solutions. Developed by Ruthikraj Nayak, Sai Kiran, Lakshmi Narayana, Santosh Kumar.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">TensorFlow 2.x</span>
+          <span class="tech-tag">MobileNetV2</span>
+          <span class="tech-tag">Flask Python</span>
+          <span class="tech-tag">Keras</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js?v=3.1"></script>
+</body>
+</html>

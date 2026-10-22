@@ -1387,7 +1387,7 @@ img {
   font-weight: 600;
 }
 
-/* Responsive adjustments for Dashboard & Awareness pages */
+/* Responsive adjustments for Dashboard, Awareness & Navigation */
 @media (max-width: 900px) {
   .dashboard-main-container div[style*="grid-template-columns: 1.5fr 1fr"] {
     grid-template-columns: 1fr !important;
@@ -1396,4 +1396,51 @@ img {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Accessibility & Keyboard Navigation Focus Rings */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Mobile & Tablet Responsive Navigation */
+@media (max-width: 860px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.85rem;
+    font-size: 0.86rem;
+  }
+  .nav-links a {
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .nav-links {
+    gap: 0.25rem 0.5rem;
+    font-size: 0.78rem;
+  }
+  .btn-nav-action {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.78rem !important;
+  }
+  .hero-swachh {
+    padding: 4rem 1rem 4rem;
+  }
+  .hero-swachh h1 {
+    font-size: 2rem !important;
+  }
+  .classifier-page-head h1 {
+    font-size: 1.8rem !important;
+  }
+}
+
 

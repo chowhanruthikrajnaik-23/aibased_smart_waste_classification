@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classification History — Smart Waste Solutions</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=3.1">
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <span>Smart Waste <strong>Solutions</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/classify"><i class="fa-solid fa-camera"></i> Classify Waste</a></li>
+        <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="/history" class="active"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li><a href="/awareness"><i class="fa-solid fa-earth-americas"></i> Environmental Awareness</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="classifier-page-head">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1>
+          <i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i>
+          Classification History
+        </h1>
+        <p>
+          Historical log of validated AI predictions saved in SQLite database or active local session.
+        </p>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="/classify" class="btn-clean btn-clean-primary">
+          <i class="fa-solid fa-plus"></i> New Prediction
+        </a>
+        <button id="btnClearHistoryBtn" type="button" class="btn-clean btn-clean-secondary" style="display: none; color: #991b1b; border-color: #fecaca;">
+          <i class="fa-solid fa-trash-can"></i> Clear History
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main style="max-width: 1240px; margin: 0 auto 5rem; padding: 0 1.75rem;">
+
+    <!-- Table Container Card -->
+    <div id="historyTableContainer" style="display: none; background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden;">
+      
+      <div style="padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--slate-100); display: flex; align-items: center; justify-content: space-between; background: var(--slate-50);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--slate-800);">
+          <i class="fa-solid fa-database" style="color: var(--primary); margin-right: 0.4rem;"></i>
+          Saved Classification Records (Newest First)
+        </div>
+        <span id="historyRecordCount" style="font-size: 0.8rem; font-weight: 700; background: var(--primary-light); color: var(--primary-deep); padding: 0.25rem 0.75rem; border-radius: var(--radius-pill);">
+          0 Records
+        </span>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="background: #ffffff; border-bottom: 2px solid var(--slate-100); color: var(--slate-500); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;">
+              <th style="padding: 1rem 1.5rem;">ID</th>
+              <th style="padding: 1rem 1.5rem;">Preview</th>
+              <th style="padding: 1rem 1.5rem;">Category</th>
+              <th style="padding: 1rem 1.5rem;">Confidence</th>
+              <th style="padding: 1rem 1.5rem;">Date &amp; Time</th>
+              <th style="padding: 1rem 1.5rem;">Disposal Guidance</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Empty State Guide -->
+    <div id="historyEmptyState" style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: var(--radius-md); padding: 4rem 2rem; text-align: center;">
+      <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--slate-100); color: var(--slate-400); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 1.25rem;">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
+        No Classification Records Found
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--slate-600); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6;">
+        No waste items have been classified in this environment yet. Try classifying an item using the file uploader or camera!
+      </p>
+      <a href="/classify" class="btn-clean btn-clean-primary">
+        <i class="fa-solid fa-camera"></i> Classify Waste Now
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Corporate Dark Footer -->
+  <footer class="footer-corporate">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Smart Waste Solutions. Developed by Ruthikraj Nayak, Sai Kiran, Lakshmi Narayana, Santosh Kumar.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">SQLite Storage</span>
+          <span class="tech-tag">Audit Trail</span>
+          <span class="tech-tag">Zero Mock Data</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- History Hydration Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const tableContainer = document.getElementById("historyTableContainer");
+      const emptyState = document.getElementById("historyEmptyState");
+      const tableBody = document.getElementById("historyTableBody");
+      const recordCountEl = document.getElementById("historyRecordCount");
+      const clearBtn = document.getElementById("btnClearHistoryBtn");
+
+      const categoryStyles = {
+        Plastic: { bg: "#eff6ff", color: "#2563eb", icon: "fa-bottle-water", border: "#bfdbfe" },
+        Paper: { bg: "#f0f9ff", color: "#0284c7", icon: "fa-newspaper", border: "#bae6fd" },
+        Metal: { bg: "#fffbeb", color: "#d97706", icon: "fa-drum-steelpan", border: "#fde68a" },
+        Glass: { bg: "#ecfdf5", color: "#059669", icon: "fa-wine-bottle", border: "#a7f3d0" },
+        Organic: { bg: "#f0fdf4", color: "#16a34a", icon: "fa-apple-whole", border: "#bbf7d0" },
+        "Organic Waste": { bg: "#f0fdf4", color: "#16a34a", icon: "fa-apple-whole", border: "#bbf7d0" }
+      };
+
+      async function loadRecords() {
+        const backendUrl = localStorage.getItem("ai_backend_url") || "";
+        try {
+          const res = await fetch(`${backendUrl}/api/history`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.records && data.records.length > 0) {
+              return data.records;
+            }
+          }
+        } catch (e) {
+          console.warn("Could not fetch remote /api/history, falling back to local storage:", e);
+        }
+
+        // LocalStorage fallback
+        try {
+          const localRecords = JSON.parse(localStorage.getItem("waste_classifications") || "[]");
+          return localRecords;
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function render(records) {
+        if (!records || records.length === 0) {
+          tableContainer.style.display = "none";
+          emptyState.style.display = "block";
+          if (clearBtn) clearBtn.style.display = "none";
+          return;
+        }
+
+        emptyState.style.display = "none";
+        tableContainer.style.display = "block";
+        if (clearBtn) clearBtn.style.display = "inline-flex";
+        recordCountEl.textContent = `${records.length} Records`;
+
+        tableBody.innerHTML = "";
+        records.forEach(r => {
+          const normCat = r.category === "Organic Waste" ? "Organic" : r.category;
+          const style = categoryStyles[normCat] || categoryStyles["Plastic"];
+          const conf = parseFloat(r.confidence || 0).toFixed(1);
+          const timeStr = r.timestamp || r.created_at || "Recent";
+          const imgUrl = r.image_url || (r.image_filename ? `/static/uploads/${r.image_filename}` : "");
+          const instructions = r.disposal_instructions || "Segregate into designated collection bin.";
+
+          const tr = document.createElement("tr");
+          tr.style.cssText = "border-bottom: 1px solid var(--slate-100); transition: background-color 0.15s ease;";
+          tr.onmouseover = () => { tr.style.backgroundColor = "#f8fafc"; };
+          tr.onmouseout = () => { tr.style.backgroundColor = "transparent"; };
+
+          tr.innerHTML = `
+            <td style="padding: 1.1rem 1.5rem; font-weight: 700; color: var(--slate-400);">#${r.id}</td>
+            <td style="padding: 1.1rem 1.5rem;">
+              <div style="width: 56px; height: 56px; border-radius: 8px; overflow: hidden; background: #0f172a; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center;">
+                ${imgUrl ? `<img src="${imgUrl}" alt="Thumbnail #${r.id}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\'fa-solid fa-image\\' style=\\'color:#94a3b8; font-size:1.25rem;\\'></i>';">` : `<i class="fa-solid fa-image" style="color: #94a3b8; font-size: 1.25rem;"></i>`}
+              </div>
+            </td>
+            <td style="padding: 1.1rem 1.5rem;">
+              <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border-radius: var(--radius-pill); font-weight: 700; font-size: 0.82rem; background: ${style.bg}; color: ${style.color}; border: 1px solid ${style.border};">
+                <i class="fa-solid ${style.icon}"></i>
+                ${normCat}
+              </span>
+            </td>
+            <td style="padding: 1.1rem 1.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.65rem;">
+                <div style="flex: 1; min-width: 60px; max-width: 80px; height: 6px; background: #e2e8f0; border-radius: 99px; overflow: hidden;">
+                  <div style="height: 100%; width: ${conf}%; background: ${conf >= 60 ? 'var(--primary)' : '#d97706'};"></div>
+                </div>
+                <strong style="color: ${conf >= 60 ? 'var(--slate-800)' : '#d97706'}; font-size: 0.88rem;">${conf}%</strong>
+              </div>
+            </td>
+            <td style="padding: 1.1rem 1.5rem; font-size: 0.84rem; color: var(--slate-500); white-space: nowrap;">
+              <i class="fa-regular fa-clock" style="margin-right: 0.35rem; color: var(--slate-400);"></i>
+              ${timeStr}
+            </td>
+            <td style="padding: 1.1rem 1.5rem; max-width: 320px; font-size: 0.84rem; color: var(--slate-600); line-height: 1.45;">
+              ${instructions}
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+      }
+
+      const records = await loadRecords();
+      render(records);
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", async function () {
+          if (!confirm("Are you sure you want to permanently clear all saved classification records?")) return;
+
+          const backendUrl = localStorage.getItem("ai_backend_url") || "";
+          try {
+            await fetch(`${backendUrl}/api/history/clear`, { method: "POST" });
+          } catch (e) {
+            console.warn("Could not reach remote /api/history/clear:", e);
+          }
+
+          localStorage.removeItem("waste_classifications");
+          render([]);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

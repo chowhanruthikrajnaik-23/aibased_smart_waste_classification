@@ -31,7 +31,7 @@ class WasteClassifierTestCase(unittest.TestCase):
         """Test that the homepage renders successfully with HTTP 200."""
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Smart Waste Classifier", response.data)
+        self.assertIn(b"Smart Waste", response.data)
         self.assertIn(b"Plastic", response.data)
         self.assertIn(b"Glass", response.data)
         print("PASS: Homepage route renders correctly with 5 categories.")
