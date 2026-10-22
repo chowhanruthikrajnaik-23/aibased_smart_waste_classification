@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Awareness — Smart Waste Solutions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.1">
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <span>Smart Waste <strong>Solutions</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/classify"><i class="fa-solid fa-camera"></i> Classify Waste</a></li>
+        <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li><a href="/awareness" class="active"><i class="fa-solid fa-earth-americas"></i> Environmental Awareness</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section for Awareness -->
+  <div class="classifier-page-head">
+    <h1>
+      <i class="fa-solid fa-earth-americas" style="color: var(--primary);"></i>
+      Environmental Awareness &amp; Waste Segregation Guide
+    </h1>
+    <p>
+      Simple, practical guidelines for students and households to minimize waste, recycle effectively, and protect our natural environment.
+    </p>
+  </div>
+
+  <main style="max-width: 1240px; margin: 0 auto 5rem; padding: 0 1.75rem;">
+
+    <!-- Section 1: Why Waste Segregation is Crucial -->
+    <section style="background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2.5rem 2.25rem; box-shadow: var(--shadow-card); margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light); color: var(--primary-deep); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+          <i class="fa-solid fa-seedling"></i>
+        </div>
+        <div>
+          <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--primary-deep); letter-spacing: 0.5px;">Core Principle</span>
+          <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--slate-900); margin: 0;">Why Waste Segregation is Important</h2>
+        </div>
+      </div>
+      <p style="font-size: 1rem; color: var(--slate-600); line-height: 1.7; margin-bottom: 1.5rem;">
+        When discarded items are thrown together into a single bin, recyclable materials become contaminated with wet food residues and liquids. This ruins their recycling value and forces them into overflowing landfills. Segregating waste at source offers key benefits:
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+        <div style="background: var(--slate-50); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.25rem;">
+          <div style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-mountain" style="color: #0284c7; margin-right: 0.4rem;"></i>
+            Reduces Landfill Burden
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate-600); margin: 0; line-height: 1.5;">
+            Diverts reusable and compostable materials away from municipal dumps, slowing down landfill expansion.
+          </p>
+        </div>
+
+        <div style="background: var(--slate-50); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.25rem;">
+          <div style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-bolt" style="color: #d97706; margin-right: 0.4rem;"></i>
+            Conserves Resources
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate-600); margin: 0; line-height: 1.5;">
+            Manufacturing products from recycled paper, metal, and glass uses significantly less energy and raw water than mining new virgin materials.
+          </p>
+        </div>
+
+        <div style="background: var(--slate-50); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.25rem;">
+          <div style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-hand-holding-hand" style="color: #059669; margin-right: 0.4rem;"></i>
+            Safer for Sanitation Workers
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate-600); margin: 0; line-height: 1.5;">
+            Separating broken glass, hazardous batteries, and sharp metals prevents serious injuries to waste management personnel.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Simple Tips for Reducing, Reusing, and Recycling (The 3Rs) -->
+    <section style="background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2.5rem 2.25rem; box-shadow: var(--shadow-card); margin-bottom: 2rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: #eff6ff; color: #2563eb; display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <div>
+          <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: #2563eb; letter-spacing: 0.5px;">Actionable Practices</span>
+          <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--slate-900); margin: 0;">Simple Tips for Reducing, Reusing, and Recycling</h2>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        <!-- Reduce -->
+        <div style="border-left: 4px solid #10b981; padding-left: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.4rem;">
+            1. Reduce Consumption
+          </h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;">
+            <li>Carry a reusable cloth bag when shopping to minimize single-use polythene bags.</li>
+            <li>Use a refillable stainless steel or durable water bottle rather than packaged plastic bottles.</li>
+            <li>Choose items with minimal plastic packaging and buy in bulk when practical.</li>
+          </ul>
+        </div>
+
+        <!-- Reuse -->
+        <div style="border-left: 4px solid #0284c7; padding-left: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.4rem;">
+            2. Reuse Everyday Items
+          </h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;">
+            <li>Clean and repurpose glass jars and metal tins for kitchen storage, stationery, or plant planters.</li>
+            <li>Use blank sides of scrap office paper for rough calculations, sketches, or note-taking.</li>
+            <li>Donate wearable clothing, surplus books, and working gadgets rather than throwing them away.</li>
+          </ul>
+        </div>
+
+        <!-- Recycle -->
+        <div style="border-left: 4px solid #d97706; padding-left: 1.25rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.4rem;">
+            3. Recycle Accurately
+          </h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.9rem; color: var(--slate-600); line-height: 1.6;">
+            <li>Sort items into designated category bins (Plastic, Paper, Metal, Glass).</li>
+            <li>Do not "wish-cycle"—only deposit items accepted by your local recycling facility.</li>
+            <li>Combine smaller cardboard boxes into a flattened bundle before placing into collection bins.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 & 4: Composting & Keeping Recyclables Clean (2 Columns) -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+
+      <!-- Composting Organic Waste -->
+      <section style="background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2.25rem 2rem; box-shadow: var(--shadow-card);">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="width: 44px; height: 44px; border-radius: 10px; background: #f0fdf4; color: #16a34a; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <i class="fa-solid fa-apple-whole"></i>
+          </div>
+          <div>
+            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #16a34a; letter-spacing: 0.5px;">Wet Waste</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin: 0;">Composting Organic Waste</h3>
+          </div>
+        </div>
+        <p style="font-size: 0.92rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1rem;">
+          Composting is nature's way of recycling organic matter into nutrient-rich humus for gardens and soil improvement:
+        </p>
+
+        <div style="margin-bottom: 1rem;">
+          <strong style="font-size: 0.88rem; color: #166534; display: block; margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-circle-check"></i> Great for Composting:
+          </strong>
+          <span style="font-size: 0.85rem; color: var(--slate-600);">
+            Fruit skins, vegetable rinds, leftover food, coffee grounds, tea leaves, dry leaves, and eggshells.
+          </span>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <strong style="font-size: 0.88rem; color: #991b1b; display: block; margin-bottom: 0.35rem;">
+            <i class="fa-solid fa-circle-xmark"></i> Keep Out of Compost:
+          </strong>
+          <span style="font-size: 0.85rem; color: var(--slate-600);">
+            Plastic stickers from fruits, polythene bags, treated wood, meat bones, dairy oils, and chemical pet litter.
+          </span>
+        </div>
+
+        <div style="background: var(--primary-light); border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-size: 0.84rem; color: var(--primary-deep);">
+          <i class="fa-solid fa-lightbulb"></i>
+          <strong>Compost Tip:</strong> Keep your compost damp and turn it periodically to allow aerobic microbes to convert waste into rich soil without bad odors.
+        </div>
+      </section>
+
+      <!-- Keeping Recyclables Clean and Separated -->
+      <section style="background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 2.25rem 2rem; box-shadow: var(--shadow-card);">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="width: 44px; height: 44px; border-radius: 10px; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            <i class="fa-solid fa-hands-bubbles"></i>
+          </div>
+          <div>
+            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: #059669; letter-spacing: 0.5px;">Quality Standards</span>
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--slate-900); margin: 0;">Keeping Recyclables Clean</h3>
+          </div>
+        </div>
+        <p style="font-size: 0.92rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 1rem;">
+          A single food-stained container can contaminate an entire bin of dry recyclables:
+        </p>
+
+        <ul style="padding-left: 1.25rem; font-size: 0.88rem; color: var(--slate-600); line-height: 1.65; margin-bottom: 1.25rem;">
+          <li><strong>Rinse before binning:</strong> Quickly rinse beverage bottles, yogurt pots, and food tins with a little water.</li>
+          <li><strong>Keep paper dry:</strong> Never mix wet garbage with paper or cardboard; moisture breaks down wood fibers and causes mold.</li>
+          <li><strong>Separate multi-materials:</strong> Detach plastic lids or metal foil seals from glass condiment jars before recycling.</li>
+          <li><strong>Flatten packages:</strong> Crush aluminum cans and flatten cardboard boxes to maximize bin space.</li>
+        </ul>
+
+        <div style="background: #eff6ff; border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-size: 0.84rem; color: #1e40af;">
+          <i class="fa-solid fa-circle-check"></i>
+          <strong>Remember:</strong> Clean recyclables can be processed into new items immediately, whereas dirty ones are discarded to landfills.
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Section 5: Reminder to Follow Local Rules -->
+    <section style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; border-radius: var(--radius-lg); padding: 2.25rem 2.5rem; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap;">
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; flex-shrink: 0;">
+        <i class="fa-solid fa-map-location-dot"></i>
+      </div>
+      <div style="flex: 1; min-width: 280px;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.35rem;">
+          Important Community Reminder: Follow Local Rules
+        </h3>
+        <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin: 0;">
+          Waste segregation systems, collection schedules, and municipal bin colors vary by city and jurisdiction. Always adhere to the official waste guidelines issued by your local municipal corporation or campus sanitation department.
+        </p>
+      </div>
+      <div>
+        <a href="/classify" class="btn-clean btn-clean-primary" style="white-space: nowrap;">
+          <i class="fa-solid fa-camera"></i> Test Classifier Now
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Corporate Dark Footer -->
+  <footer class="footer-corporate">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Smart Waste Solutions. Developed by Ruthikraj Nayak, Sai Kiran, Lakshmi Narayana, Santosh Kumar.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Sustainability</span>
+          <span class="tech-tag">Community Education</span>
+          <span class="tech-tag">Clean Campus</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

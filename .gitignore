@@ -1,0 +1,27 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment Variables & Logs
+.env
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Large raw archive data (if any)
+*.zip
+*.tar.gz
+archive/
+*.exe
+

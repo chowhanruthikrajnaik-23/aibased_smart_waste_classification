@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classification History — Smart Waste Solutions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.1">
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-recycle"></i>
+        </div>
+        <span>Smart Waste <strong>Solutions</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="/classify"><i class="fa-solid fa-camera"></i> Classify Waste</a></li>
+        <li><a href="/dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+        <li><a href="/history" class="active"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+        <li><a href="/awareness"><i class="fa-solid fa-earth-americas"></i> Environmental Awareness</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="classifier-page-head">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1>
+          <i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i>
+          Classification History
+        </h1>
+        <p>
+          Historical log of all validated AI predictions stored in the local SQLite database.
+        </p>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="/classify" class="btn-clean btn-clean-primary">
+          <i class="fa-solid fa-plus"></i> New Prediction
+        </a>
+        {% if count > 0 %}
+        <button id="btnClearHistoryBtn" type="button" class="btn-clean btn-clean-secondary" style="color: #991b1b; border-color: #fecaca;">
+          <i class="fa-solid fa-trash-can"></i> Clear History
+        </button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <main style="max-width: 1240px; margin: 0 auto 5rem; padding: 0 1.75rem;">
+
+    {% if count > 0 %}
+    <!-- Table Container Card -->
+    <div style="background: #ffffff; border: 1px solid var(--border-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden;">
+      
+      <div style="padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--slate-100); display: flex; align-items: center; justify-content: space-between; background: var(--slate-50);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: var(--slate-800);">
+          <i class="fa-solid fa-database" style="color: var(--primary); margin-right: 0.4rem;"></i>
+          Saved Classification Records (Newest First)
+        </div>
+        <span style="font-size: 0.8rem; font-weight: 700; background: var(--primary-light); color: var(--primary-deep); padding: 0.25rem 0.75rem; border-radius: var(--radius-pill);">
+          {{ count }} Records
+        </span>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="background: #ffffff; border-bottom: 2px solid var(--slate-100); color: var(--slate-500); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px;">
+              <th style="padding: 1rem 1.5rem;">ID</th>
+              <th style="padding: 1rem 1.5rem;">Preview</th>
+              <th style="padding: 1rem 1.5rem;">Category</th>
+              <th style="padding: 1rem 1.5rem;">Confidence</th>
+              <th style="padding: 1rem 1.5rem;">Date &amp; Time</th>
+              <th style="padding: 1rem 1.5rem;">Disposal Guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in records %}
+            <tr style="border-bottom: 1px solid var(--slate-100); transition: background-color 0.15s ease;" onmouseover="this.style.backgroundColor='#f8fafc'" onmouseout="this.style.backgroundColor='transparent'">
+              <!-- Record ID -->
+              <td style="padding: 1.1rem 1.5rem; font-weight: 700; color: var(--slate-400);">
+                #{{ r.id }}
+              </td>
+
+              <!-- Image Thumbnail Preview -->
+              <td style="padding: 1.1rem 1.5rem;">
+                <div style="width: 56px; height: 56px; border-radius: 8px; overflow: hidden; background: #0f172a; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center;">
+                  {% if r.image_filename %}
+                  <img src="/static/uploads/{{ r.image_filename }}" alt="Thumbnail #{{ r.id }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-image\' style=\'color:#94a3b8; font-size:1.25rem;\'></i>';">
+                  {% else %}
+                  <i class="fa-solid fa-image" style="color: #94a3b8; font-size: 1.25rem;"></i>
+                  {% endif %}
+                </div>
+              </td>
+
+              <!-- Category with Stream Badge -->
+              <td style="padding: 1.1rem 1.5rem;">
+                {% if r.category == 'Plastic' %}
+                <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.84rem; font-weight: 700; background: #dbeafe; color: #1e40af;">
+                  <i class="fa-solid fa-bottle-water"></i> Plastic
+                </span>
+                {% elif r.category == 'Paper' %}
+                <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.84rem; font-weight: 700; background: #e0f2fe; color: #0369a1;">
+                  <i class="fa-solid fa-newspaper"></i> Paper
+                </span>
+                {% elif r.category == 'Metal' %}
+                <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.84rem; font-weight: 700; background: #fef3c7; color: #92400e;">
+                  <i class="fa-solid fa-drum-steelpan"></i> Metal
+                </span>
+                {% elif r.category == 'Glass' %}
+                <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.84rem; font-weight: 700; background: #d1fae5; color: #065f46;">
+                  <i class="fa-solid fa-wine-bottle"></i> Glass
+                </span>
+                {% else %}
+                <span style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.84rem; font-weight: 700; background: #dcfce7; color: #166534;">
+                  <i class="fa-solid fa-apple-whole"></i> Organic
+                </span>
+                {% endif %}
+              </td>
+
+              <!-- Confidence -->
+              <td style="padding: 1.1rem 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-weight: 700; color: var(--slate-900);">
+                    {{ r.confidence }}%
+                  </span>
+                  {% if r.confidence < 60.0 %}
+                  <span title="Low confidence prediction (<60%)" style="color: #d97706; font-size: 0.85rem;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </span>
+                  {% else %}
+                  <span title="High confidence prediction" style="color: #10b981; font-size: 0.85rem;">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </span>
+                  {% endif %}
+                </div>
+              </td>
+
+              <!-- Timestamp -->
+              <td style="padding: 1.1rem 1.5rem; color: var(--slate-600); font-size: 0.85rem; white-space: nowrap;">
+                <i class="fa-regular fa-clock" style="margin-right: 0.3rem; color: var(--slate-400);"></i>
+                {{ r.created_at }}
+              </td>
+
+              <!-- Disposal Directive -->
+              <td style="padding: 1.1rem 1.5rem; font-size: 0.84rem; color: var(--slate-600); max-width: 280px; line-height: 1.45;">
+                {% if r.category == 'Plastic' %}
+                Clean item if possible; place in plastic recycling bin.
+                {% elif r.category == 'Paper' %}
+                Keep clean and dry; place in paper recycling bin.
+                {% elif r.category == 'Metal' %}
+                Separate metal items; place in appropriate metal bin.
+                {% elif r.category == 'Glass' %}
+                Handle carefully; place in designated glass collection bank.
+                {% else %}
+                Put food scraps and garden waste in compost/organic bin.
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    {% else %}
+    <!-- Empty History State -->
+    <div style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: var(--radius-lg); padding: 4rem 2rem; text-align: center;">
+      <i class="fa-solid fa-clock-rotate-left" style="font-size: 3.5rem; color: #cbd5e1; margin-bottom: 1.25rem;"></i>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
+        No Classification History Records Yet
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--slate-600); max-width: 480px; margin: 0 auto 1.75rem;">
+        When you upload an image or capture a snapshot on the Classify Waste page, successful predictions are safely logged to your SQLite database and listed here.
+      </p>
+      <a href="/classify" class="btn-clean btn-clean-primary">
+        <i class="fa-solid fa-camera"></i> Classify Your First Waste Item
+      </a>
+    </div>
+    {% endif %}
+
+  </main>
+
+  <!-- Clear History Confirmation Modal -->
+  <div id="clearHistoryModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: #ffffff; border-radius: var(--radius-lg); max-width: 480px; width: 100%; padding: 2rem; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); text-align: center;">
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.5rem;">
+        Clear Classification History?
+      </h3>
+      <p style="font-size: 0.92rem; color: var(--slate-600); margin-bottom: 1.75rem; line-height: 1.5;">
+        Are you sure you want to delete all saved classification records? This action cannot be undone and will reset your statistics dashboard to zero.
+      </p>
+      <div style="display: flex; gap: 0.75rem; justify-content: center;">
+        <button id="btnCancelClear" type="button" class="btn-clean btn-clean-secondary" style="flex: 1;">
+          Cancel
+        </button>
+        <button id="btnConfirmClear" type="button" class="btn-clean btn-clean-primary" style="flex: 1; background: #dc2626; border-color: #dc2626; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);">
+          Yes, Clear History
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corporate Dark Footer -->
+  <footer class="footer-corporate">
+    <div class="footer-inner">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Smart Waste Solutions. System by Ruthikraj Nayak, Sai Kiran, Lakshmi Narayana, Santosh Kumar.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">SQLite Database</span>
+          <span class="tech-tag">Auto-Logged</span>
+          <span class="tech-tag">Safe File Storage</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const btnClearHistoryBtn = document.getElementById("btnClearHistoryBtn");
+      const clearHistoryModal = document.getElementById("clearHistoryModal");
+      const btnCancelClear = document.getElementById("btnCancelClear");
+      const btnConfirmClear = document.getElementById("btnConfirmClear");
+
+      if (btnClearHistoryBtn && clearHistoryModal) {
+        btnClearHistoryBtn.addEventListener("click", () => {
+          clearHistoryModal.style.display = "flex";
+        });
+
+        btnCancelClear.addEventListener("click", () => {
+          clearHistoryModal.style.display = "none";
+        });
+
+        // Close modal on backdrop click
+        clearHistoryModal.addEventListener("click", (e) => {
+          if (e.target === clearHistoryModal) {
+            clearHistoryModal.style.display = "none";
+          }
+        });
+
+        btnConfirmClear.addEventListener("click", async () => {
+          btnConfirmClear.disabled = true;
+          btnConfirmClear.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Clearing...";
+          try {
+            const res = await fetch("/api/history/clear", { method: "POST" });
+            const data = await res.json();
+            if (data.success) {
+              window.location.reload();
+            } else {
+              alert("Failed to clear history: " + (data.message || "Unknown error"));
+              btnConfirmClear.disabled = false;
+              btnConfirmClear.textContent = "Yes, Clear History";
+            }
+          } catch (err) {
+            alert("Network error while clearing history.");
+            btnConfirmClear.disabled = false;
+            btnConfirmClear.textContent = "Yes, Clear History";
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

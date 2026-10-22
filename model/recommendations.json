@@ -1,0 +1,116 @@
+{
+  "Plastic": {
+    "category": "Plastic",
+    "disposal_instructions": "Clean the item if possible and place it in the appropriate plastic recycling bin. Follow local recycling rules.",
+    "bin_type": "Plastic Recycling / Dry Waste",
+    "bin_color": "#2563eb",
+    "bin_color_name": "Blue Bin",
+    "recyclable": true,
+    "badge_class": "badge-plastic",
+    "icon": "fa-bottle-water",
+    "summary": "Recyclable plastic polymer containers, bottles, and packaging.",
+    "segregation_steps": [
+      "Clean the item if possible and place it in the appropriate plastic recycling bin.",
+      "Follow local recycling rules.",
+      "Empty leftover liquids and rinse out greasy residues.",
+      "Crush plastic bottles to save space in the recycling bin."
+    ],
+    "examples": "Water bottles, beverage containers, milk jugs, detergent containers, plastic tubs.",
+    "environmental_fact": "Recycling plastic prevents persistent microplastic contamination in oceans and soil."
+  },
+  "Paper": {
+    "category": "Paper",
+    "disposal_instructions": "Keep it clean and dry, then place it in the paper recycling bin. Avoid recycling heavily contaminated paper.",
+    "bin_type": "Paper & Cardboard / Dry Waste",
+    "bin_color": "#0284c7",
+    "bin_color_name": "Blue / Paper Bin",
+    "recyclable": true,
+    "badge_class": "badge-paper",
+    "icon": "fa-newspaper",
+    "summary": "Dry cellulose paper, cardboard boxes, and paper packaging.",
+    "segregation_steps": [
+      "Keep it clean and dry, then place it in the paper recycling bin.",
+      "Avoid recycling heavily contaminated paper.",
+      "Flatten cardboard boxes and packaging cartons.",
+      "Remove sticky plastic tape, bubble wraps, and metal clips if possible."
+    ],
+    "examples": "Cardboard boxes, notebooks, newspapers, office copy paper, magazines, clean envelopes.",
+    "environmental_fact": "Recycling paper conserves trees, fresh water, and electrical energy."
+  },
+  "Metal": {
+    "category": "Metal",
+    "disposal_instructions": "Separate metal items and place recyclable metal in the appropriate recycling bin.",
+    "bin_type": "Metal Recyclables",
+    "bin_color": "#d97706",
+    "bin_color_name": "Yellow / Red Bin",
+    "recyclable": true,
+    "badge_class": "badge-metal",
+    "icon": "fa-can-food",
+    "summary": "Aluminum, steel, and tin metal containers.",
+    "segregation_steps": [
+      "Separate metal items and place recyclable metal in the appropriate recycling bin.",
+      "Empty all contents and rinse out food or drink residues.",
+      "Push metal lid flaps inside cans to prevent sharp edges.",
+      "Do not mix electronic waste or batteries in regular metal recycling bins."
+    ],
+    "examples": "Soda and beverage cans, tin food cans, aluminum foil trays, metal jar lids.",
+    "environmental_fact": "Metal can be recycled repeatedly without degradation in structural quality."
+  },
+  "Glass": {
+    "category": "Glass",
+    "disposal_instructions": "Handle carefully and place recyclable glass in the designated glass collection bin. Do not put broken glass into a normal recycling bin unless local rules allow it.",
+    "bin_type": "Glass Collection Bank",
+    "bin_color": "#059669",
+    "bin_color_name": "Green / Glass Bin",
+    "recyclable": true,
+    "badge_class": "badge-glass",
+    "icon": "fa-wine-bottle",
+    "summary": "Container glass (bottles, jars, and vials).",
+    "segregation_steps": [
+      "Handle carefully and place recyclable glass in the designated glass collection bin.",
+      "Do not put broken glass into a normal recycling bin unless local rules allow it.",
+      "Rinse glass bottles and jars clean of food or drink residues.",
+      "Separate non-glass caps, lids, and corks."
+    ],
+    "examples": "Beverage bottles, glass jam jars, culinary condiment jars, medicine vials.",
+    "environmental_fact": "Glass is 100% recyclable infinitely with zero loss in purity."
+  },
+  "Organic": {
+    "category": "Organic",
+    "disposal_instructions": "Put suitable food scraps and garden waste in a compost bin or an approved organic-waste collection bin.",
+    "bin_type": "Wet / Biodegradable Waste",
+    "bin_color": "#16a34a",
+    "bin_color_name": "Green Compost Bin",
+    "recyclable": true,
+    "badge_class": "badge-organic",
+    "icon": "fa-apple-whole",
+    "summary": "Biodegradable organic matter suitable for composting.",
+    "segregation_steps": [
+      "Put suitable food scraps and garden waste in a compost bin or an approved organic-waste collection bin.",
+      "Keep plastic wrappers, stickers, and non-biodegradable packaging out of organic waste.",
+      "Drain excess liquid before disposal to prevent odors and bin leakage.",
+      "Use home compost pits or municipal green bin collection."
+    ],
+    "examples": "Fruit peels, vegetable skins, food scraps, tea leaves, coffee grounds, garden clippings.",
+    "environmental_fact": "Composting organic matter produces rich organic soil fertilizer and reduces landfill emissions."
+  },
+  "Organic Waste": {
+    "category": "Organic",
+    "disposal_instructions": "Put suitable food scraps and garden waste in a compost bin or an approved organic-waste collection bin.",
+    "bin_type": "Wet / Biodegradable Waste",
+    "bin_color": "#16a34a",
+    "bin_color_name": "Green Compost Bin",
+    "recyclable": true,
+    "badge_class": "badge-organic",
+    "icon": "fa-apple-whole",
+    "summary": "Biodegradable organic matter suitable for composting.",
+    "segregation_steps": [
+      "Put suitable food scraps and garden waste in a compost bin or an approved organic-waste collection bin.",
+      "Keep plastic wrappers, stickers, and non-biodegradable packaging out of organic waste.",
+      "Drain excess liquid before disposal to prevent odors and bin leakage.",
+      "Use home compost pits or municipal green bin collection."
+    ],
+    "examples": "Fruit peels, vegetable skins, food scraps, tea leaves, coffee grounds, garden clippings.",
+    "environmental_fact": "Composting organic matter produces rich organic soil fertilizer and reduces landfill emissions."
+  }
+}
