@@ -43,7 +43,7 @@ class FrontendTestSuite(unittest.TestCase):
             self.soups[filename] = BeautifulSoup(content, "html.parser")
 
     def test_vercel_configuration(self):
-        """Verify vercel.json exists, is valid JSON, and defines clean routing."""
+        """Verify vercel.json and .vercelignore exist, are valid, and configure static hosting."""
         vercel_path = os.path.join(BASE_DIR, "vercel.json")
         self.assertTrue(os.path.exists(vercel_path), "vercel.json does not exist!")
         with open(vercel_path, "r", encoding="utf-8") as f:
@@ -63,7 +63,15 @@ class FrontendTestSuite(unittest.TestCase):
             self.assertIn(src, rewrites, f"Missing rewrite for {src}")
             self.assertEqual(rewrites[src], dest)
 
-        print("PASS: vercel.json verified with clean URLs and page rewrites.")
+        # Check .vercelignore prevents Python lambda bundle explosion
+        ignore_path = os.path.join(BASE_DIR, ".vercelignore")
+        self.assertTrue(os.path.exists(ignore_path), ".vercelignore does not exist!")
+        with open(ignore_path, "r", encoding="utf-8") as f:
+            ignore_content = f.read()
+        self.assertIn("requirements.txt", ignore_content)
+        self.assertIn("app.py", ignore_content)
+
+        print("PASS: vercel.json and .vercelignore verified for static deployment without Lambda size explosion.")
 
     def test_html5_structure_and_meta(self):
         """Verify valid HTML5 structure, viewport, and titles on all 5 pages."""

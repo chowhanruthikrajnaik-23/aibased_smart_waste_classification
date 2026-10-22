@@ -1,0 +1,21 @@
+# Ignore Python backend, heavy dependencies, and ML model files from Vercel deployment
+requirements.txt
+app.py
+database.py
+database.db
+model/
+notebooks/
+train_enhanced.py
+train_local.py
+test_*.py
+Dockerfile
+Procfile
+run.bat
+cloudflared.exe
+extract_assets.py
+generate_pdfs.py
+report_final.docx
+*.pdf
+*.md
+__pycache__/
+*.pyc
